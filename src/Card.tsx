@@ -1,20 +1,20 @@
 type CardProps = {
   num: number,
-  show: boolean,
+  cardisActive: boolean,
   lastClick: (number: number) => void,
   index: number,
-  showCard: (num: number) => boolean
+  flipCard: (num: number) => boolean
 }
 
 
-export default function Card({ num, show, lastClick, index, showCard }: CardProps) {
+export default function Card({ num, cardisActive, lastClick, index, flipCard }: CardProps) {
   const handelCardCLick = () => {
-    if (show) return
-    const forwoard = showCard(index)
-    if (forwoard) lastClick(num)
+    if (cardisActive) return
+    const oneCardIsOpen = flipCard(index)
+    if (oneCardIsOpen) lastClick(num)
   }
 
-  return (<div className={`card ${show ? "rotate" : ""}`}
+  return (<div className={`card ${cardisActive ? "rotate" : ""}`}
     onClick={handelCardCLick}>
     <div className="backCard">?</div>
     <img className="img" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${num}.png`} />
