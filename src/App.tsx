@@ -11,10 +11,7 @@ function App() {
   const [reset, setReset] = useState(false)
   const [activeCard, setActiveCard] = useState<number | null>(null)
   const selectRef = useRef<HTMLSelectElement>(null)
-  const startGame = () => {
-    setActiveTimer(prev => !prev);
-    setReset(false)
-  }
+
   const showCard = (index: number) => {
     if (!activeTimer) setActiveTimer(true)
     const newGrid = [...grid]
@@ -48,7 +45,7 @@ function App() {
       newGrid.map(el => el.number === num ? { ...el, status: true } : el)
       setGrid(newGrid)
       if (grid.every(el => el.status)) {
-
+        setReset(false)
         setActiveTimer(false)
       }
 
@@ -69,27 +66,36 @@ function App() {
   }
 
   const changeMode = (e: React.ChangeEvent<HTMLSelectElement>) => {
-
+    resetTimer()
     setGrid(generateArrayOfRandomNumbers(+e.target.value))
     moves = 0;
 
   }
   return <>
     <Timer activeTimer={activeTimer} reset={reset} />
-    <div>moves={moves}</div>
-    <select name="" id="" ref={selectRef} onChange={changeMode}>
-      <option value="4">Eeasy</option>
-      <option value="6">Medium</option>
-      <option value="8">Hard</option>
-    </select>
+    <div className="details">
+      <select name="" id="" ref={selectRef} onChange={changeMode}>
+        <option value="4">Eeasy</option>
+        <option value="6">Medium</option>
+        <option value="8">Hard</option>
+      </select>
+      <div>moves={moves}</div>
+    </div>
     <div className="grid">
 
-      {grid.map((el, i) => <Card key={i} showCard={showCard} num={el.number} index={i} show={el.status} lastClick={lastClick} />)}
+      {grid.map((el, i) =>
+        <Card key={i} showCard={showCard}
+          num={el.number} index={i} show={el.status}
+          lastClick={lastClick} />
+      )}
 
 
     </div>
-    <button onClick={startGame}>{activeTimer ? "Pause" : "Start"} Game</button>
-    <button onClick={resetTimer}>New Game</button></>
+    <div className="buttons">
+
+      <button onClick={resetTimer}>New Game</button>
+    </div>
+  </>
 }
 
 export default App;
