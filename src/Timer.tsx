@@ -1,30 +1,31 @@
-import { useEffect, useState } from "react";
-type TimerProps = {
-  activeTimer: boolean,
-  reset: boolean
-}
-export default function Timer({ activeTimer, reset }: TimerProps) {
-  const [min, setMin] = useState(0);
-  const [sec, setSec] = useState(0);
-  const resetTimer = () => {
-    setSec(0)
-    setMin(0)
-  }
-  useEffect(() => {
-    if (reset && !activeTimer) resetTimer()
-    let addSecond: any = null;
-    addSecond = setInterval(() => {
-      setSec((sec) => {
-        if (sec !== 59)
-          return sec + 1
-        else setMin(min => min + 1)
-        return sec = 0
-      });
+import { useEffect } from "react";
 
-    }, 1000)
-    if (!activeTimer) clearInterval(addSecond)
-    return () => clearInterval(addSecond)
-  }, [activeTimer, reset])
+import { useSelector, useDispatch } from "react-redux"
+import { RootState } from "./store/index"
+import { cardActions } from "./store/CardsSlice"
+
+export default function Timer() {
+
+  const timer = useSelector((state: RootState) => state.cards.timer)
+  const sec = timer.sec
+  const min = timer.min
+  const activeTimer = timer.active
+  const dispatch = useDispatch()
+
+
+  useEffect(() => {
+    let timer: any = null;
+    if (activeTimer)
+      timer = setInterval(() =>
+        dispatch(cardActions.incrementTimer())
+        , 1000)
+
+    return () => {
+      clearInterval(timer);
+
+    }
+
+  }, [activeTimer])
 
 
   return <div className="timer">{min.toString().padStart(2, "0")}:{sec.toString().padStart(2, "0")}</div>

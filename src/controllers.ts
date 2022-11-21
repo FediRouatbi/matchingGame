@@ -14,14 +14,5 @@ export const generateArrayOfRandomNumbers = (num: number): { number: number, sta
 }
 
 
-export const checkActiveCards = (grid: { number: number, status: boolean }[]) => {
 
-    const activeCards = grid.filter(el => el.status === true).map(el => el.number).sort();
-    let cards = []
-    for (let i = 0; i < activeCards.length; i++) {
-        if (activeCards[i] === activeCards[i + 1] || activeCards[i] === activeCards[i - 1]) continue
-        cards.push(activeCards[i])
-    }
-    return cards
-}
 
