@@ -22,11 +22,12 @@ export default function Card({ number, status, index }: CardProps) {
 
 
     if (openCardsLength === 1) {
+
       dispatch(cardActions.checkEquality(index))
 
       setTimeout(() => {
-        dispatch(cardActions.closeCards())
         dispatch(cardActions.checkForWin())
+        dispatch(cardActions.closeCards())
       }, 600)
     }
 

@@ -26,7 +26,7 @@ const Modal = () => {
 
             <div className='modal__info'>
                 <div>Congrats 🎉🎉</div >
-                <div> you just won the game on {`${min ? min + " min and" : ""}`}  {sec}sec with {moves} moves</div>
+                <div> You just won the game within {`${min ? min + " min and" : ""}`}  {sec} seconds  in  {moves} shots.</div>
                 <button >Ok</button>
             </div>
         </div >

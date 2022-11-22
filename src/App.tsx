@@ -39,7 +39,7 @@ function App() {
     <div className="grid">
 
       {grid.map((el, i) =>
-        <Card {...el} index={i} />
+        <Card {...el} index={i} key={i} />
       )}
 
 
