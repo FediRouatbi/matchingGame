@@ -62,10 +62,11 @@ const Cardsslice = createSlice({
             if (!state.matchedCards.length) return
             const activeCardIndex = state.matchedCards[0];
             const nextCardIndex = state.matchedCards[1]
-            state.cards[activeCardIndex].status = false
-            state.cards[nextCardIndex].status = false
-            state.matchedCards = []
-
+            if (activeCardIndex && nextCardIndex) {
+                state.cards[activeCardIndex].status = false
+                state.cards[nextCardIndex].status = false
+                state.matchedCards = []
+            }
         },
         changeDifficulty(state, action) {
             const difficulty = action.payload

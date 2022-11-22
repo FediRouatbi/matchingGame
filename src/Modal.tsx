@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -13,19 +14,22 @@ const Modal = () => {
     const moves = state.moves;
 
     const dispatch = useDispatch()
+    const playAgain = (e: MouseEvent<HTMLElement>) => {
+        if (e.target === e.currentTarget || (e.target as HTMLButtonElement).tagName === "BUTTON")
+            dispatch(cardActions.resetGame())
 
-    const playAgain = () => {
-        dispatch(cardActions.resetGame())
     }
+
     if (!win) return null
     return createPortal(
-        <div className="modal">
+        <div className="modal" onClick={playAgain}>
+
             <div className='modal__info'>
                 <div>Congrats 🎉🎉</div >
                 <div> you just won the game on {`${min ? min + " min and" : ""}`}  {sec}sec with {moves} moves</div>
-                <button onClick={playAgain}>Ok</button>
+                <button >Ok</button>
             </div>
-        </div>
+        </div >
         , document.body);
 }
 

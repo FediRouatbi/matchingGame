@@ -34,7 +34,7 @@ export default function Card({ number, status, index }: CardProps) {
 
 
 
-  return (<div className={`card ${status ? "rotate" : ""}`}
+  return (<div className={`card ${status ? "rotate" : "rotate"}`}
     onClick={handelCardCLick}>
     <div className="backCard">?</div>
     <img className="img" src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png`} />

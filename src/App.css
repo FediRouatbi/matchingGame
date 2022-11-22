@@ -1,5 +1,5 @@
 .grid{
-    padding-top: 20px;
+    padding-top: 40px;
     width: fit-content;
     justify-items: center;
     align-items: center;
@@ -56,7 +56,8 @@ border-radius: 18px;
     position: absolute;
     font-size: 30px;
     top:50px;
-    
+    width: 100px;
+
 }
 
 .timer {right: 50px;
@@ -70,7 +71,7 @@ border-radius: 18px;
 .select{
     padding: 0 1em 0 0;
     margin: 0;
-    width: 100%;
+    width: 150px;
     font-family: inherit;
     font-size: inherit;
     cursor: pointer;
@@ -125,20 +126,29 @@ display: flex;
     border-radius: 20px;
     font-size: 30px;
     padding: 30px;
+    gap: 20px;
+    text-align: center;
+
 }
 .modal__info button{
     margin-top:auto ;
 }
-@media (width<=700px){
+@media (width<=850px){
     .card{
         width: 80px;
         height: 80px;
     }  .grid{
         padding-top: 100px;
     }
+    .timer,.details{
+        
+        font-size: 25px;
+      
+        
+    }
   
 }
-@media (width<=400px){
+@media (width<=520px){
     .card{
         width: 60px;
         height: 60px;
@@ -152,5 +162,14 @@ display: flex;
     }
     .details{
         top:20px
+    }
+    .modal__info{
+        font-size: 20px;
+    }
+    .timer,.details{
+        
+        font-size: 20px;
+      
+        
     }
 }
