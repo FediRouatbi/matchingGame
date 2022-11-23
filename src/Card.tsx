@@ -26,8 +26,9 @@ export default function Card({ number, status, index }: CardProps) {
       dispatch(cardActions.checkEquality(index))
 
       setTimeout(() => {
-        dispatch(cardActions.checkForWin())
         dispatch(cardActions.closeCards())
+        dispatch(cardActions.checkForWin())
+        
       }, 600)
     }
 
